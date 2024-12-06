@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Film</title>
+</head>
+<body>
+<h1>Formulario de Film</h1>
+<form th:action="@{/films}" th:object="${film}" method="post">
+    <label for="title">Título:</label>
+    <input type="text" id="title" th:field="*{title}" required />
+    <br />
+    <label for="description">Descripción:</label>
+    <textarea id="description" th:field="*{description}" required></textarea>
+    <br />
+    <label for="releaseYear">Año:</label>
+    <input type="number" id="releaseYear" th:field="*{releaseYear}" required />
+    <br />
+    <label for="language">Idioma:</label>
+    <select id="language" th:field="*{language.id}" required>
+        <option th:each="language : ${languages}" th:value="${language.id}" th:text="${language.name}"></option>
+    </select>
+    <br />
+    <button type="submit">Guardar</button>
+</form>
+<a th:href="@{/films}">Cancelar</a>
+</body>
+</html>
